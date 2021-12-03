@@ -1,0 +1,44 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "brand": "Hyundai",
+      "model": "Creta",
+      "age": 3,
+      "transmission": "automatic",
+      "engine": "petrol",
+      "litre": 3,
+      "color": "white"
+    },
+    {
+      "id": 2,
+      "brand": "Hyundai",
+      "model": "Santa Fe",
+      "age": 2,
+      "transmission": "automatic",
+      "engine": "diesel",
+      "litre": 5,
+      "color": "black"
+    },
+    {
+      "id": 3,
+      "brand": "Hyundai",
+      "model": "Solaris",
+      "age": 0,
+      "transmission": "mechanic",
+      "engine": "electric",
+      "litre": 2,
+      "color": "magenta"
+    },
+    {
+      "id": 4,
+      "brand": "Hyundai",
+      "model": "Gets",
+      "age": 1,
+      "transmission": null,
+      "engine": "petrol",
+      "litre": 1.6,
+      "color": "violet"
+    }
+  ]
+}

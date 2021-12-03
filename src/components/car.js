@@ -1,4 +1,3 @@
-import s from './car.module.scss'
 import {useState, useEffect} from 'react'
 import {Layout, Row, Collapse,Typography} from "antd";
 import cars from '../fixtures/cars.json'
@@ -8,31 +7,7 @@ const { Panel } = Collapse;
 const { Paragraph, Title } = Typography;
 
 const Car = (props) => {
-    const [year, setYear] = useState(25);
     const [count, setCount] = useState(0);
-
-    if (5 === 7){
-        // const [count2, setCount2] = useState(0);
-    }
-
-    // const getValue = () => {
-        // const [count3, setCount3] = useState(0);
-    // }
-
-    useEffect (()=> {
-        setCount(20)
-    },[count, year, props])
-
-    useEffect(() => {
-        const id = setInterval(() => {
-            setCount(c => c + 1)
-        }, 15);
-
-        return () => {
-            console.log('unmount')
-            clearTimeout(id);
-        }
-    }, [])
 
     const handleClick = () => {
         console.log('handle click info---=')
@@ -62,7 +37,6 @@ const Car = (props) => {
             Wheels: {props.wheels}
 
             <button onClick={() => setCount(count+1)}>set Count</button>
-            <button onClick={() => setYear(count+1)}>set Year</button>
             <button onClick={() => props.onChange('hideMe')}>hideMe</button>
 
             <Layout>

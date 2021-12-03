@@ -2,38 +2,68 @@ import s from './car.module.scss'
 import {useState, useEffect} from 'react'
 import {Layout, Row, Collapse,Typography} from "antd";
 import cars from '../fixtures/cars.json'
+import useInputValue from "../customHooks/useInputValue"
 
-const { Header, Footer, Content } = Layout;
 const { Panel } = Collapse;
-const { Paragraph } = Typography;
+const { Paragraph, Title } = Typography;
 
 const Car = (props) => {
     const [year, setYear] = useState(25);
     const [count, setCount] = useState(0);
 
+    if (5 === 7){
+        // const [count2, setCount2] = useState(0);
+    }
+
+    // const getValue = () => {
+        // const [count3, setCount3] = useState(0);
+    // }
+
+    useEffect (()=> {
+        setCount(20)
+    },[count, year, props])
+
     useEffect(() => {
         const id = setInterval(() => {
             setCount(c => c + 1)
-        }, 1500);
+        }, 15);
 
         return () => {
+            console.log('unmount')
             clearTimeout(id);
         }
     }, [])
 
-    console.log(cars)
+    const handleClick = () => {
+        console.log('handle click info---=')
+    }
 
+    useEffect(()=>{
+        window.addEventListener('click', handleClick)
+
+        return () => {
+            console.log('Запускаем уборку мусора... Задача выполнена!')
+            window.removeEventListener('click', handleClick)
+        }
+    },[])
+
+
+    const [value,handleChange] = useInputValue('maprrt')
+    const [value2,handleChange2] = useInputValue()
 
     return (
         <Layout>
-            {/*<Layout>*/}
-            {/*    <Header>Header</Header>*/}
-            {/*    <Content>Content</Content>*/}
-            {/*    <Footer>Footer</Footer>*/}
-            {/*</Layout>*/}
+            <Title>{count}</Title>
 
-            {/*<button className={s.nice} onClick={() => setYear(40)}>Change year</button>*/}
-            {/*<button onClick={() => props.onChange(year)}>Change year to parent</button>*/}
+            <input name='ds' onChange={(e) => handleChange(e)} value={value} />
+            <input name='ss' onChange={(e) => handleChange2(e)} value={value2} />
+
+            <Title>{value}</Title>
+            Wheels: {props.wheels}
+
+            <button onClick={() => setCount(count+1)}>set Count</button>
+            <button onClick={() => setYear(count+1)}>set Year</button>
+            <button onClick={() => props.onChange('hideMe')}>hideMe</button>
 
             <Layout>
                 <Row>Count: {count}</Row>

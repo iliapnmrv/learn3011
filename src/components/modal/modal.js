@@ -1,24 +1,34 @@
-import s from './modal.module.scss'
-import {Button, Layout} from "antd";
+import s from "./modal.module.scss";
+import { Button, Layout } from "antd";
+import { useEffect } from "react";
 
-const {Header} = Layout
+const { Header } = Layout;
 
-const Modal = (props) => {
+const Modal = ({ onClose }) => {
+  const handleClose = (e) => {
+    if (e.target.className === s.content) {
+      onClose();
+    }
+  };
 
-    // напишите ваш код тут для закрытия модалки по клику вне окна
-    //используя знания полученные на уроке и гугл:
-    // подсказка что искать: useClickOutside
+  useEffect(() => {
+    window.addEventListener("click", handleClose);
+    return () => {
+      window.removeEventListener("click", handleClose);
+    };
+  }, []);
 
-    return (
-        <div className={s.content}>
-            <div className={s.inner}>
-                <Button onClick={() => props.onClose()}>Закрыть</Button>
-                <Layout>
-                    <Header />
-                    Hi, I am Modal
-                </Layout>
-            </div>
-        </div>)
-}
+  return (
+    <div className={s.content}>
+      <div className={s.inner}>
+        <Button onClick={() => onClose()}>Закрыть</Button>
+        <Layout>
+          <Header />
+          Hi, I am Modal
+        </Layout>
+      </div>
+    </div>
+  );
+};
 
-export default Modal
+export default Modal;
